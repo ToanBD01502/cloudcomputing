@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SanPhamRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SanPhamRepository::class)]
@@ -13,17 +15,28 @@ class SanPham
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 200)]
     private ?string $name = null;
 
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $photo = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sanPhams')]
+    private ?Category $cate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
+
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderItem::class)]
+    private Collection $orderItems;
+
+    public function __construct()
+    {
+        $this->orderItems = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -35,7 +48,7 @@ class SanPham
         return $this->name;
     }
 
-    public function setName(string $name): static
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -47,7 +60,7 @@ class SanPham
         return $this->price;
     }
 
-    public function setPrice(float $price): static
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
@@ -59,9 +72,21 @@ class SanPham
         return $this->photo;
     }
 
-    public function setPhoto(?string $photo): static
+    public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getCate(): ?Category
+    {
+        return $this->cate;
+    }
+
+    public function setCate(?Category $cate): static
+    {
+        $this->cate = $cate;
 
         return $this;
     }
@@ -77,4 +102,34 @@ class SanPham
 
         return $this;
     }
+
+    // /**
+    //  * @return Collection<int, OrderItem>
+    //  */
+    // public function getOrderItems(): Collection
+    // {
+    //     return $this->orderItems;
+    // }
+
+    // public function addOrderItem(OrderItem $orderItem): static
+    // {
+    //     if (!$this->orderItems->contains($orderItem)) {
+    //         $this->orderItems->add($orderItem);
+    //         $orderItem->setProduct($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeOrderItem(OrderItem $orderItem): static
+    // {
+    //     if ($this->orderItems->removeElement($orderItem)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($orderItem->getProduct() === $this) {
+    //             $orderItem->setProduct(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
 }

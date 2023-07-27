@@ -3,42 +3,60 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+<section class="vh-100">
+  <div class="container">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-sm-6 text-black">
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-1 pt-xl-0 mt-xl-n5">
+
+          <form method="post" class="form-signin" style="width: 23rem;">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+
+            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
+
+            <label for="inputUsername" class="sr-only">Username</label>
+            <div class="form-outline mb-3">
+              <label class="form-label" for="inputUsername">Username</label>
+              <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control form-control-lg rounded-2" autocomplete="username" required autofocus>
+            </div>
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            <div class="form-outline mb-3">
+              <label class="form-label" for="inputPassword">Password</label>
+              <input type="password" id="inputPassword" class="form-control form-control-lg rounded-2" name="password" required>
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html #}
+            <div class="form-check mb-3">
+                <input type="checkbox" name="_remember_me" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
+
+            <button class="btn btn-outline-primary btn-lg btn-block rounded-2" type="submit">Login</button>
+
+            <p class="small mb-5 pb-lg-2 pt-3"><a class="text-muted" href="#!">Forgot password?</a></p>
+            <p>Don't have an account? <a href="{{ path('app_register')}}" class="link-info">Register here</a></p>
+          </form>
+
         </div>
-    {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control mb-3" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    
-        {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html #}
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-   
-
-    <button class="btn btn-success bg-success mt-3 rounded-1" type="submit">
-        Sign in
-    </button>
-</form>
-</div>
+      </div>
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <img src="https://i.pinimg.com/564x/8b/59/d7/8b59d7de1397bb3fed4593b0886e0324.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
