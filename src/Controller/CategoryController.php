@@ -19,7 +19,7 @@ class CategoryController extends AbstractController
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
     }
-    #[Route('/category', name: 'app_category')]
+    #[Route('/adcategory', name: 'ad_category')]
     public function index(EntityManagerInterface $em, Request $req, FileUploader $fileUploader): Response
     {
         $sp = new Category();
@@ -34,7 +34,7 @@ class CategoryController extends AbstractController
 
             $em->persist($data);
             $em->flush();
-            return new RedirectResponse($this->urlGenerator->generate('app_category'));
+            return new RedirectResponse($this->urlGenerator->generate('ad_category'));
         }
 
         return $this->render('category/index.html.twig', [

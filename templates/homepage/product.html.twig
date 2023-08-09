@@ -42,9 +42,11 @@
 <!-- Best Seller Banner End -->
 
 <!-- Products Start -->
-<div class="container-fluid pt-5 pb-3">
+<div class="container-fluid pb-3">
     <h2 class="section-title position-relative mx-xl-5">
-        <span class="bg-light pr-3">Special! Sales off all products, today</span>
+        <span class="bg-light pr-3">Nice perfume from the store!</span>
+        <p>The best your choices</p>
+        <hr>
     </h2>
     <div class="row px-xl-4">
         {% for sp in data %}
@@ -56,16 +58,8 @@
                 <div class="text-center py-4">
                     <a class="h6 text-decoration-none text-truncate" href="">{{ sp.getName() }}</a>
                     <div class="d-flex align-items-center justify-content-center mt-2">
-                        <h5>{{ sp.getPrice() }} $</h5>
+                        <h5>$ {{ sp.getPrice() }} </h5>
                     </div>
-                    {# <div class="d-flex align-items-center justify-content-center mb-2">
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small class="fa fa-star text-primary mr-1"></small>
-                        <small>(99)</small>
-                    </div> #}
                     <div class="btn" title="Add to cart">
                         <form method="post" action="{{ path('app_cart_add', {'product_id': sp.getId()}) }}">
                             <button class="btn btn-outline-primary btn-light rounded-2 pl-3 pr-3" type="submit">

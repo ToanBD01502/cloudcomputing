@@ -1,0 +1,17 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <h1 class="pb-3">Contact us</h1>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-outline-primary  rounded-2" type="submit">Submit</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

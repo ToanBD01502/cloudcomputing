@@ -55,7 +55,7 @@ class HomepageController extends AbstractController
     }
     
     #[Route('/', name: 'homepage')]
-    public function cate(EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, PaginatorInterface $paginator, Request $request): Response
+    public function mainFunction(EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, PaginatorInterface $paginator, Request $request): Response
     {
         $query = $em->createQuery('SELECT category FROM App\Entity\Category category');
         $category = $query->getResult();
@@ -122,6 +122,6 @@ class HomepageController extends AbstractController
 
         $products = $this->entityManager->getRepository(SanPham::class)->findByKeyword($keyword);
 
-        return $this->render('homepage/sanpham.html.twig', ['data' => $products]);
+        return $this->render('homepage/product.html.twig', ['data' => $products]);
     }
 }
