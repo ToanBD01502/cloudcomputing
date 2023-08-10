@@ -24,7 +24,7 @@ class HomepageController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/feature', name: 'feature_product')]
+    #[Route('/products', name: 'feature_product')]
     public function viewdetail(EntityManagerInterface $em): Response
     {
         $query = $em->createQuery('SELECT sp FROM App\Entity\SanPham sp');
@@ -44,7 +44,7 @@ class HomepageController extends AbstractController
             'category' => $category,
         ]);
     }
-    #[Route('/feature/{id}', name: 'app_detailsp')]
+    #[Route('/product/{id}', name: 'app_detailsp')]
     public function detail(EntityManagerInterface $em, int $id): Response
     {
         $sp = $em->find(SanPham::class, $id);
@@ -80,7 +80,7 @@ class HomepageController extends AbstractController
     {
         $cate = $em->find(Category::class, $id);
         $lSp = $cate->getSanPhams();
-        return $this->render('homepage/sanpham.html.twig', [
+        return $this->render('homepage/product.html.twig', [
             "data"=>$lSp
         ]);
     }

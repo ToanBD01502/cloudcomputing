@@ -1,3 +1,7 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+contact_success:
+    path: /contact/success
+    controller: App\Controller\ContactController::contactSuccess

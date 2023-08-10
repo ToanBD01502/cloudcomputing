@@ -10,32 +10,32 @@
     <div class="row justify-content-center align-items-center h-100">
       <div class="col-sm-6 text-black">
 
-        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+        <div class="d-flex align-items-center h-custom-2 px-2 ms-xl-4 pt-xl-0 mt-xl-n5">
 
-          <div class="container mt-5">
-            <h1 class="mb-3">Register</h1>
+          <div class="container ">
+            <h2 class="mb-4" style="letter-spacing: 0.5px;">Register</h2>
 
             {{ form_errors(registrationForm) }}
 
             {{ form_start(registrationForm) }}
                 {{ form_row(registrationForm.username, {
-                    'attr': {'class': 'form-control rounded-2 mb-3', 'placeholder': 'Username'}
+                    'attr': {'class': 'form-control rounded-2 mb-3'}
                 }) }}
                 {{ form_row(registrationForm.first_name, {
-                    'attr': {'class': 'form-control rounded-2 mb-3', 'placeholder': 'First Name'}
+                    'attr': {'class': 'form-control rounded-2 mb-3'}
                 }) }}
                 {{ form_row(registrationForm.last_name, {
-                    'attr': {'class': 'form-control rounded-2 mb-3', 'placeholder': 'Last Name'}
+                    'attr': {'class': 'form-control rounded-2 mb-3'}
                 }) }}
                 {{ form_row(registrationForm.address, {
-                    'attr': {'class': 'form-control rounded-2 mb-3', 'placeholder': 'Address'}
+                    'attr': {'class': 'form-control rounded-2 mb-3'}
                 }) }}
                 {{ form_row(registrationForm.phonenumber, {
-                    'attr': {'class': 'form-control rounded-2 mb-3', 'placeholder': 'Phone Number'}
+                    'attr': {'class': 'form-control rounded-2 mb-3'}
                 }) }}
                 {{ form_row(registrationForm.plainPassword, {
                     'label': 'Password',
-                    'attr': {'class': 'form-control rounded-2 mb-3', 'placeholder': 'Password'}
+                    'attr': {'class': 'form-control rounded-2 mb-3'}
                 }) }}
                 {{ form_row(registrationForm.agreeTerms, {
                     'label_attr': {'class': 'form-check-label'},
@@ -49,8 +49,8 @@
         </div>
 
       </div>
-      <div class="col-sm-6 px-0 d-none d-sm-block">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp" alt="Register image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+      <div class="col-sm-5 px-0 d-none d-sm-block">
+        <img src="https://images.pexels.com/photos/15260901/pexels-photo-15260901/free-photo-of-a-person-holding-the-perfume-bottle.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Register image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
       </div>
     </div>
   </div>
